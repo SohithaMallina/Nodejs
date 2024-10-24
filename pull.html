@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 8</title>
+</head>
+<body>
+    <header>Sohitha uses fetch to update a page</header>
+    <br>
+    <div>
+        <input type="number" id="input1" placeholder="Enter first number">
+        <br>
+        <input type="number" id="input2" placeholder="Enter second number">
+        <br>
+        <button id="fetchButton">Function application on the Server</button>
+    </div>
+    <div id="result">
+
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', () => {
+            const input1 = document.getElementById('input1').value;
+            const input2 = document.getElementById('input2').value;
+
+            // Construct URL with parameters
+            const url = `http://127.0.0.1:3001?x=${input1}&y=${input2}`;
+
+            // Fetch request
+            fetch(url)
+                .then(response => response.text()) // Use .text() instead of .json()
+                .then(text => {
+                    document.getElementById('result').innerHTML = text;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = `Error: ${error}`;
+                });
+        });
+    </script>
+    </div>
+</body>
+</html>
